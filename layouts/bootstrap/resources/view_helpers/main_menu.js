@@ -3,7 +3,6 @@ var util = require('util');
 var path = require('path');
 var fs = require('fs');
 var _DEBUG = false;
-var moment = require('moment');
 var ejs = require('ejs');
 var hm = require('hive-menu');
 
@@ -28,7 +27,9 @@ module.exports = function (apiary, cb) {
 			name: 'main_menu',
 
 			test: function (ctx, output) {
-				return true;
+                // note there are other places that layout name can be specified
+                // so this is a "lazy test" to make sure that another layout wasn't named.
+				return (!output.layout_name) || (output.layout_name == 'bootstrap');
 			},
 
 			weight: -55,
