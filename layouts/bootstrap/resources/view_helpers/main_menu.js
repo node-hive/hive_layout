@@ -28,7 +28,7 @@ module.exports = function (apiary, cb) {
 			name: 'main_menu',
 
 			test: function (ctx, output) {
-				return output.layout_name == 'bootstrap';
+				return true;
 			},
 
 			weight: -55,
