@@ -2,7 +2,7 @@ var _ = require('underscore');
 var util = require('util');
 var path = require('path');
 var _DEBUG = false;
-var js_model = require('resource_models/javascript');
+var js_model = require('./../../lib/resource_models/javascript');
 
 module.exports = function (apiary, cb) {
 
