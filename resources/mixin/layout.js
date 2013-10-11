@@ -2,7 +2,7 @@ var Gate = require('gate');
 var _ = require('underscore');
 var util = require('util');
 var path = require('path');
-var layouts_dir_loader = require('loaders/layouts_dir_loader');
+var layouts_dir_loader = require('./../../lib/loaders/layouts_dir_loader');
 var _DEBUG = false;
 
 module.exports = function (apiary, cb) {
