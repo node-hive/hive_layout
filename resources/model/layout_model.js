@@ -13,7 +13,7 @@ var _DEBUG = false;
 var init = 0;
 module.exports = function (apiary, cb) {
 
-    console.log('Making layout model %s', init++);
+    if (_DEBUG) console.log('Making layout model %s', init++);
 	var model = apiary.Model({
 		name: '$layouts',
 		_pk:  'name'
