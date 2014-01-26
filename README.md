@@ -23,6 +23,7 @@ This is NOT a node module! Frames are part of a web project using hive-mvc. You 
 ## The Javascript helper
 
 Javascript can be annotated and embedded via helpers. Just list javascript in an array in your action or layout configuration file.
+Javascript manifests can be included in the configuration files of actions, hives, and layouts.
 
 Each javascript entry must contain the following parameters:
 
@@ -50,6 +51,16 @@ then just embed
 in your template to include javascript `<script>...</script>` tags in your page.
 
 Note, the "requires" array is documentary -- it is not enforced through code.
+
+## The CSS Helper
+
+The CSS helper works exactaly like the JS helper Only the "url" and "context" properties are used, and the helper is
+
+``` ejs
+
+<%- css_model.render('head') %>
+
+```
 
 ## The starting template
 
