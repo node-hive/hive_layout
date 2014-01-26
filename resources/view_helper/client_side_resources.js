@@ -3,6 +3,7 @@ var util = require('util');
 var path = require('path');
 var _DEBUG = false;
 var js_model = require('./../../lib/resource_models/javascript');
+var css_model = require('./../../lib/resource_models/css');
 
 module.exports = function (apiary, cb) {
 
@@ -19,20 +20,26 @@ module.exports = function (apiary, cb) {
 			var action = ctx.$action;
 			var hive = action.get_config('hive');
 			var layout = output.layout;
-			var hive_js = hive.get_config('javascript', []);
-			var action_js = action.get_config('javascript', []);
-			var layout_js = layout ? layout.get_config('javascript', []) : [];
-			var output_js = output.javascript ? output.javascript : [];
 
-if (_DEBUG)			console.log('javascripts: %s', util.inspect(
-				hive_js.concat(action_js.concat(layout_js.concat(output_js)))));
+            function _collect(resource, model){
 
-			var js_data = js_model(apiary);
-			js_data.add_items(hive_js);
-			js_data.add_items(action_js);
-			js_data.add_items(layout_js);
-			js_data.add_items(output_js);
-			output.js_model = js_data;
+                var action_js = action.get_config(resource, []);
+                var hive_js = hive.get_config(resource, []);
+                var layout_js = layout ? layout.get_config(resource, []) : [];
+                var output_js = output[resource] || [];
+
+                var data = model(apiary);
+                data.add_items(action_js);
+                data.add_items(hive_js);
+                data.add_items(layout_js);
+                data.add_items(output_js);
+                
+                return data;
+            }
+
+
+			output.js_model = _collect('javascript', js_model);
+            output.css_model = _collect('css', css_model);
 			cb();
 		}
 	};

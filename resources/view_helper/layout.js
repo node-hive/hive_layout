@@ -16,7 +16,7 @@ module.exports = function (apiary, cb) {
 
 		respond: function (ctx, output, cb) {
 			var lm = apiary.model('$layouts');
-            console.log('looking for %s in %s', output.layout_name, util.inspect(lm));
+           if (_DEBUG) console.log('looking for %s in %s', output.layout_name, util.inspect(lm));
 			lm.get(output.layout_name, function (err, layout) {
                 if (err){
                     console.log('error getting layout: %s', err);
